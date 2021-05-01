@@ -1,13 +1,16 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
+// ignore: must_be_immutable
 class Category extends StatefulWidget {
   @required
   final String name;
   final double height;
-  final IconData icon;
+  IconData icon;
 
-  Category({this.icon, this.name, this.height});
+  Category({this.icon, this.name, this.height}) {
+    if (this.icon == null) this.icon = Icons.tag;
+  }
 
   @override
   _CategoryState createState() => _CategoryState();
@@ -21,17 +24,24 @@ class _CategoryState extends State<Category> {
         width: this.widget.height * 4.0,
         height: this.widget.height,
         child: Card(
-          // color: Theme.of(context).accentColor,
+          // color: Theme.of(context).primarySwatch,
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(this.widget.height * 0.5),
           ),
           child: ListTile(
-            leading: Icon(this.widget.icon),
-            title: Text(this.widget.name),
+            leading: Icon(
+              this.widget.icon,
+              color: Theme.of(context).primaryColor,
+            ),
+            title: Text(
+              this.widget.name,
+              // style: TextStyle(color: Theme.of(context).primaryColor),
+            ),
           ),
         ),
       ),
-      onTap: () => Navigator.pushNamed(context, '/${this.widget.name}'),
+      onTap: () => Navigator.pushNamed(context, '/SubCategories',
+          arguments: this.widget.name),
     );
   }
 }

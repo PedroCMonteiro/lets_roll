@@ -1,24 +1,53 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
+import '../Category.dart';
+
+// import '../Category.dart';
+
 class RollerPage extends StatefulWidget {
   RollerPage({Key key, this.title}) : super(key: key);
 
   final String title;
 
   @override
-  _RollerPageeState createState() => _RollerPageeState();
+  _RollerPageState createState() => _RollerPageState();
 }
 
-class _RollerPageeState extends State<RollerPage> {
+class _RollerPageState extends State<RollerPage> {
+  double height = 60.0;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text(this.widget.title == null ? '' : this.widget.title),
+        title: Text('Patins'),
       ),
-      body: Text(
-        'Patins',
+      body: Center(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: <Widget>[
+            Category(
+              icon: Icons.calendar_today,
+              height: this.height,
+              name: 'Events',
+            ),
+            Category(
+              icon: Icons.people,
+              height: this.height,
+              name: 'Groups',
+            ),
+            Category(
+              icon: Icons.map,
+              height: this.height,
+              name: 'Places',
+            ),
+            Category(
+              height: this.height,
+              name: 'Products',
+            ),
+          ],
+        ),
       ),
     );
   }

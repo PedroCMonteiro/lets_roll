@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 import '../Category.dart';
+import '../User.dart';
 
 class MainCategoriesPage extends StatefulWidget {
   MainCategoriesPage({Key key, this.title}) : super(key: key);
@@ -14,12 +15,24 @@ class MainCategoriesPage extends StatefulWidget {
 
 class _MainCategoriesPageState extends State<MainCategoriesPage> {
   double height = 60.0;
-
   @override
   Widget build(BuildContext context) {
+    User user = ModalRoute.of(context).settings.arguments;
+    if (user == null)
+      user = User(
+        username: 'pedro castro monteiro',
+        profilePhoto: 'assets/img/Mufasa.jpg',
+      );
     return Scaffold(
       appBar: AppBar(
-        title: Text('Login'),
+        title: Center(
+          child: Row(
+            children: [
+              Text('Styles'),
+              user,
+            ],
+          ),
+        ),
       ),
       body: Center(
         child: Column(

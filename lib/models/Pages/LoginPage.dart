@@ -1,6 +1,8 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
+import '../User.dart';
+
 // import '../Category.dart';
 
 class LoginPage extends StatefulWidget {
@@ -17,17 +19,50 @@ class _LoginPageState extends State<LoginPage> {
 
   @override
   Widget build(BuildContext context) {
+    TextEditingController _user = TextEditingController();
+    TextEditingController _password = TextEditingController();
+
     return Scaffold(
       appBar: AppBar(
-        title: Text('Login'),
+        title: Center(child: Text('Login')),
       ),
       body: Center(
         child: Column(
           children: [
-            Text('Login'),
+            Padding(
+              padding: EdgeInsets.all(5.0),
+              child: TextField(
+                controller: _user,
+                decoration: InputDecoration(
+                  border: OutlineInputBorder(),
+                  labelText: 'Username / Email',
+                ),
+                maxLength: 100,
+              ),
+            ),
+            Padding(
+              padding: EdgeInsets.all(5.0),
+              child: TextField(
+                controller: _password,
+                decoration: InputDecoration(
+                  border: OutlineInputBorder(),
+                  labelText: 'Password',
+                ),
+                maxLength: 100,
+              ),
+            ),
             ElevatedButton(
-                onPressed: () =>
-                    Navigator.pushNamed(context, '/MainCategories'),
+                onPressed: () => {
+                      if (true)
+                        Navigator.pushNamed(
+                          context,
+                          '/MainCategories',
+                          arguments: User(
+                            username: _user.text,
+                            profilePhoto: 'assets/img/Mufasa.jpg',
+                          ),
+                        )
+                    },
                 child: Text('Login'))
           ],
         ),

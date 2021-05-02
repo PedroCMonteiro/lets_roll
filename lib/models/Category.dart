@@ -1,6 +1,8 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
+import 'User.dart';
+
 // ignore: must_be_immutable
 class Category extends StatefulWidget {
   @required
@@ -19,6 +21,8 @@ class Category extends StatefulWidget {
 class _CategoryState extends State<Category> {
   @override
   Widget build(BuildContext context) {
+    final User user = ModalRoute.of(context).settings.arguments;
+
     return GestureDetector(
       child: Container(
         width: this.widget.height * 4.0,
@@ -41,7 +45,7 @@ class _CategoryState extends State<Category> {
         ),
       ),
       onTap: () => Navigator.pushNamed(context, '/SubCategories',
-          arguments: this.widget.name),
+          arguments: {this.widget.name, user}),
     );
   }
 }

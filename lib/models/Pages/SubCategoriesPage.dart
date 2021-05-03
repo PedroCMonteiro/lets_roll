@@ -1,5 +1,8 @@
+import 'dart:math';
+
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:swipedetector/swipedetector.dart';
 
 import '../User.dart';
 import 'EventPage.dart';
@@ -28,7 +31,8 @@ class _SubCategoriesPageState extends State<SubCategoriesPage> {
 
   void _onItemTapped(int index) {
     setState(() {
-      _selectedIndex = index;
+      _selectedIndex = max(min(index, 5), 0);
+      print(_selectedIndex);
     });
   }
 
@@ -43,7 +47,18 @@ class _SubCategoriesPageState extends State<SubCategoriesPage> {
           child: Text(args.mainCategory),
         ),
       ),
-      body: _bottomNavigationBarOptions[_selectedIndex],
+      body: SwipeDetector(
+        child: _bottomNavigationBarOptions[_selectedIndex],
+        onSwipeLeft: () => {_onItemTapped(_selectedIndex - 1)},
+        onSwipeRight: () => {_onItemTapped(_selectedIndex + 1)},
+        swipeConfiguration: SwipeConfiguration(
+            verticalSwipeMinVelocity: 0.0,
+            verticalSwipeMinDisplacement: 50.0,
+            verticalSwipeMaxWidthThreshold: 100.0,
+            horizontalSwipeMaxHeightThreshold: 50.0,
+            horizontalSwipeMinDisplacement: 50.0,
+            horizontalSwipeMinVelocity: 0.0),
+      ),
       bottomNavigationBar: Stack(
         children: <Widget>[
           BottomNavigationBar(

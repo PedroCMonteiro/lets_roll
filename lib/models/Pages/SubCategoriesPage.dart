@@ -31,7 +31,7 @@ class _SubCategoriesPageState extends State<SubCategoriesPage> {
 
   void _onItemTapped(int index) {
     setState(() {
-      _selectedIndex = max(min(index, 5), 0);
+      _selectedIndex = max(min(index, 4), 0);
       print(_selectedIndex);
     });
   }

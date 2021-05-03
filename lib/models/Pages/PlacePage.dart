@@ -4,10 +4,12 @@ import 'package:flutter/material.dart';
 // import '../Category.dart';
 
 class PlacePage extends StatelessWidget {
-  final String title;
+  // final String title;
   final double height = 60.0;
 
-  PlacePage({Key key, this.title}) : super(key: key);
+  PlacePage({
+    Key key,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

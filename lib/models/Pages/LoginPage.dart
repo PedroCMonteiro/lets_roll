@@ -53,20 +53,30 @@ class _LoginPageState extends State<LoginPage> {
             ),
             ElevatedButton(
                 onPressed: () => {
-                      if (true)
-                        Navigator.pushNamed(
-                          context,
-                          '/MainCategories',
-                          arguments: User(
-                            username: _user.text,
-                            profilePhoto: 'assets/img/Mufasa.jpg',
+                      if (_user.text.isNotEmpty && validaSenha())
+                        {
+                          Navigator.pushNamed(
+                            context,
+                            '/MainCategories',
+                            arguments: User(
+                              username: _user.text,
+                              profilePhoto: 'assets/img/Mufasa.jpg',
+                            ),
                           ),
-                        )
+                        }
+                      else
+                        {
+                          print('Erro'),
+                        }
                     },
                 child: Text('Login'))
           ],
         ),
       ),
     );
+  }
+
+  bool validaSenha() {
+    return true;
   }
 }

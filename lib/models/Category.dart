@@ -1,6 +1,8 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
+import 'Pages/SubCategoriesPage.dart';
+
 import 'User.dart';
 
 // ignore: must_be_immutable
@@ -44,8 +46,14 @@ class _CategoryState extends State<Category> {
           ),
         ),
       ),
-      onTap: () => Navigator.pushNamed(context, '/SubCategories',
-          arguments: {this.widget.name, user}),
+      onTap: () => Navigator.pushNamed(
+        context,
+        '/SubCategories',
+        arguments: SubCategoriesPageArguments(
+          mainCategory: this.widget.name,
+          user: user,
+        ),
+      ),
     );
   }
 }

@@ -5,9 +5,11 @@ import 'package:flutter/material.dart';
 
 class ProductPage extends StatelessWidget {
   final double height = 60.0;
-  final String title;
+  // final String title;
 
-  ProductPage({Key key, this.title}) : super(key: key);
+  ProductPage({
+    Key key,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

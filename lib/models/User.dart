@@ -17,19 +17,18 @@ class User extends StatelessWidget {
 
   Widget build(BuildContext context) {
     if (profilePhoto == null) {
-      return Tooltip(
-        message: userToolTip(username),
+      return GestureDetector(
         child: CircleAvatar(
           backgroundImage: AssetImage(
             profilePhoto,
           ),
         ),
+        onTap: () => {},
       );
     } else {
-      return Tooltip(
-        message: userToolTip(username),
+      return GestureDetector(
         child: CircleAvatar(
-          backgroundColor: Colors.brown.shade800,
+          // backgroundColor: Colors.brown.shade800,
           child: Center(
             child: Text(username
                 .split(' ')
@@ -39,6 +38,7 @@ class User extends StatelessWidget {
                 .toUpperCase()),
           ),
         ),
+        onTap: () => {},
       );
     }
   }

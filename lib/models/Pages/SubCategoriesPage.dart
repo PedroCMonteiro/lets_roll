@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
+import '../User.dart';
 import 'EventPage.dart';
 import 'GroupPage.dart';
 import 'PlacePage.dart';
@@ -22,6 +23,7 @@ class _SubCategoriesPageState extends State<SubCategoriesPage> {
     GroupPage(),
     PlacePage(),
     ProductPage(),
+    ProductPage(),
   ];
 
   void _onItemTapped(int index) {
@@ -32,50 +34,78 @@ class _SubCategoriesPageState extends State<SubCategoriesPage> {
 
   @override
   Widget build(BuildContext context) {
-    final String title = ModalRoute.of(context).settings.arguments;
+    final SubCategoriesPageArguments args =
+        ModalRoute.of(context).settings.arguments;
 
     return Scaffold(
       appBar: AppBar(
-        title: Text(title),
+        title: Center(
+          child: Text(args.mainCategory),
+        ),
       ),
       body: _bottomNavigationBarOptions[_selectedIndex],
-      bottomNavigationBar: BottomNavigationBar(
-        backgroundColor: Colors.lightBlue[100],
-        // fixedColor: Theme.of(context).primaryColor,
-        fixedColor: Colors.purple,
-        items: const <BottomNavigationBarItem>[
-          BottomNavigationBarItem(
-            icon: Icon(
-              Icons.calendar_today,
-              color: Colors.lightBlue,
-            ),
-            label: 'Events',
+      bottomNavigationBar: Stack(
+        children: <Widget>[
+          BottomNavigationBar(
+            type: BottomNavigationBarType.fixed,
+            iconSize: 24,
+            backgroundColor: Colors.lightBlue[100],
+            // fixedColor: Theme.of(context).primaryColor,
+            // fixedColor: Colors.purple,
+            selectedItemColor: Theme.of(context).primaryColor,
+            unselectedItemColor: Colors.lightBlue,
+            items: const <BottomNavigationBarItem>[
+              BottomNavigationBarItem(
+                icon: Icon(
+                  Icons.calendar_today,
+                ),
+                label: 'Events',
+                tooltip: '',
+              ),
+              BottomNavigationBarItem(
+                icon: Icon(
+                  Icons.people,
+                ),
+                tooltip: '',
+                label: 'Groups',
+              ),
+              BottomNavigationBarItem(
+                icon: Icon(
+                  Icons.location_pin,
+                ),
+                label: 'Places',
+                tooltip: '',
+              ),
+              BottomNavigationBarItem(
+                icon: Icon(
+                  Icons.tag,
+                ),
+                label: 'Products',
+                tooltip: '',
+              ),
+              BottomNavigationBarItem(
+                icon: const Icon(null, size: 0),
+                label: '',
+                tooltip: '',
+              ),
+            ],
+            currentIndex: _selectedIndex,
+            onTap: _onItemTapped,
           ),
-          BottomNavigationBarItem(
-            icon: Icon(
-              Icons.people,
-              color: Colors.lightBlue,
-            ),
-            label: 'Groups',
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(
-              Icons.location_pin,
-              color: Colors.lightBlue,
-            ),
-            label: 'Places',
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(
-              Icons.tag,
-              color: Colors.lightBlue,
-            ),
-            label: 'Products',
-          ),
+          Positioned(
+            right: 32.0,
+            top: 8.5,
+            child: args.user,
+          )
         ],
-        currentIndex: _selectedIndex,
-        onTap: _onItemTapped,
       ),
     );
   }
+}
+
+class SubCategoriesPageArguments {
+  final User user;
+  final String mainCategory;
+
+  SubCategoriesPageArguments({this.user, this.mainCategory});
 }

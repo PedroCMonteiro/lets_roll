@@ -24,7 +24,7 @@ class _LoginPageState extends State<LoginPage> {
 
     return Scaffold(
       appBar: AppBar(
-        title: Center(child: Text('Login')),
+        title: Text('Login'),
       ),
       body: Center(
         child: Column(

@@ -9,6 +9,7 @@ import 'EventPage.dart';
 import 'GroupPage.dart';
 import 'PlacePage.dart';
 import 'ProductPage.dart';
+import 'UserPage.dart';
 
 class SubCategoriesPage extends StatefulWidget {
   SubCategoriesPage({Key key}) : super(key: key);
@@ -26,13 +27,12 @@ class _SubCategoriesPageState extends State<SubCategoriesPage> {
     GroupPage(),
     PlacePage(),
     ProductPage(),
-    ProductPage(),
+    UserPage(),
   ];
 
   void _onItemTapped(int index) {
     setState(() {
       _selectedIndex = max(min(index, 4), 0);
-      print(_selectedIndex);
     });
   }
 
@@ -43,9 +43,7 @@ class _SubCategoriesPageState extends State<SubCategoriesPage> {
 
     return Scaffold(
       appBar: AppBar(
-        title: Center(
-          child: Text(args.mainCategory),
-        ),
+        title: Text(args.mainCategory),
       ),
       body: SwipeDetector(
         child: _bottomNavigationBarOptions[_selectedIndex],
@@ -110,7 +108,10 @@ class _SubCategoriesPageState extends State<SubCategoriesPage> {
           Positioned(
             right: 32.0,
             top: 8.5,
-            child: args.user,
+            child: GestureDetector(
+              onTap: () => {_selectedIndex = 4},
+              child: args.user,
+            ),
           )
         ],
       ),

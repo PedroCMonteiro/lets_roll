@@ -25,9 +25,7 @@ class _MainCategoriesPageState extends State<MainCategoriesPage> {
       );
     return Scaffold(
       appBar: AppBar(
-        title: Center(
-          child: Text('Styles'),
-        ),
+        title: Text('Styles'),
       ),
       body: Center(
         child: Column(

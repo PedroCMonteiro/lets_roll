@@ -17,6 +17,8 @@ samples, guidance on mobile development, and a full API reference.
  ## Future Features 
  Add toggle show hide password
  Specific pages for every equipment
+ Dymanic Map
 
- 
  Icons from: https://www.svgrepo.com/
+## Como rodar o app
+Na linha de comando digite flutter run -d chrome

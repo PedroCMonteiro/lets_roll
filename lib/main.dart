@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'models/Pages/LoginPage.dart';
 import 'models/Pages/MainCategoriesPage.dart';
 import 'models/Pages/SubCategoriesPage.dart';
+import 'models/Pages/UserPage.dart';
 
 Map<int, Color> color = {
   50: Color.fromRGBO(83, 158, 255, .1),
@@ -37,6 +38,7 @@ class MyApp extends StatelessWidget {
         '/': (context) => LoginPage(),
         '/MainCategories': (context) => MainCategoriesPage(),
         '/SubCategories': (context) => SubCategoriesPage(),
+        '/User': (context) => UserPage(),
       },
     );
   }

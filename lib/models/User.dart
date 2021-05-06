@@ -3,6 +3,8 @@ import 'dart:math';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 
+import 'Pages/UserPage.dart';
+
 class User extends StatelessWidget {
   final String username;
   final String profilePhoto;
@@ -38,7 +40,10 @@ class User extends StatelessWidget {
                 .toUpperCase()),
           ),
         ),
-        onTap: () => {},
+        onTap: () => {
+          Navigator.pushNamed(context, '/User',
+              arguments: UserPageArguments(user: this))
+        },
       );
     }
   }

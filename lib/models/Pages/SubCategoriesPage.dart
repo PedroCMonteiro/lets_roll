@@ -28,12 +28,12 @@ class _SubCategoriesPageState extends State<SubCategoriesPage> {
     GroupPage(),
     PlacePage(),
     ProductPage(),
-    UserPage(),
   ];
 
   void _onItemTapped(int index) {
     setState(() {
-      _selectedIndex = max(min(index, 4), 0);
+      _selectedIndex =
+          max(min(index, _bottomNavigationBarOptions.length - 1), 0);
     });
   }
 
@@ -45,6 +45,13 @@ class _SubCategoriesPageState extends State<SubCategoriesPage> {
     return Scaffold(
       appBar: AppBar(
         title: Text(args.mainCategory),
+        actions: <Widget>[
+          Padding(
+            padding: const EdgeInsets.only(
+                left: 30.0, top: 8.0, bottom: 8.0, right: 8.0),
+            child: args.user,
+          ),
+        ],
       ),
       body: SwipeDetector(
         child: _bottomNavigationBarOptions[_selectedIndex],
@@ -97,23 +104,10 @@ class _SubCategoriesPageState extends State<SubCategoriesPage> {
                 label: 'Products',
                 tooltip: '',
               ),
-              BottomNavigationBarItem(
-                icon: const Icon(null, size: 0),
-                label: '',
-                tooltip: '',
-              ),
             ],
             currentIndex: _selectedIndex,
             onTap: _onItemTapped,
           ),
-          Positioned(
-            right: 32.0,
-            top: 8.5,
-            child: GestureDetector(
-              onTap: () => {_selectedIndex = 4},
-              child: args.user,
-            ),
-          )
         ],
       ),
     );

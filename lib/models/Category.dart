@@ -27,7 +27,7 @@ class _CategoryState extends State<Category> {
 
     return GestureDetector(
         child: Container(
-          width: this.widget.height * 4.0,
+          // width: this.widget.height * 4.0,
           height: this.widget.height,
           child: Card(
             // color: Theme.of(context).primarySwatch,

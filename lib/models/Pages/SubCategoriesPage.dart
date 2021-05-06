@@ -67,7 +67,7 @@ class _SubCategoriesPageState extends State<SubCategoriesPage> {
             // fixedColor: Theme.of(context).primaryColor,
             // fixedColor: Colors.purple,
             selectedItemColor: Theme.of(context).primaryColor,
-            unselectedItemColor: Colors.lightBlue,
+            unselectedItemColor: Colors.deepPurple,
             items: const <BottomNavigationBarItem>[
               BottomNavigationBarItem(
                 icon: Icon(

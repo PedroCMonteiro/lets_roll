@@ -4,7 +4,6 @@ import 'package:flutter/material.dart';
 import '../../icons/lets_roll_icons.dart';
 import '../Category.dart';
 import '../User.dart';
-
 class MainCategoriesPage extends StatefulWidget {
   MainCategoriesPage({Key key, this.title}) : super(key: key);
 
@@ -26,8 +25,9 @@ class _MainCategoriesPageState extends State<MainCategoriesPage> {
       );
     return Scaffold(
       appBar: AppBar(
-        title: Text('Styles'),
-      ),
+        title: Text( 'Let\'s Roll'),
+        centerTitle: true,
+        ),
       body: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,

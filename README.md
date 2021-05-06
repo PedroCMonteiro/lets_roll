@@ -16,5 +16,7 @@ For help getting started with Flutter, view our
 samples, guidance on mobile development, and a full API reference.
  ## Future Features 
  Add toggle show hide password
+ Specific pages for every equipment
+
+ 
  Icons from: https://www.svgrepo.com/
- Colors chosen with the help of https://color.adobe.com/pt/create/color-wheel

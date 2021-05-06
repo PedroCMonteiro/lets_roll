@@ -6,7 +6,7 @@ import 'package:http/http.dart' as http;
 
 Future<String> fetchPost() async {
   var headers = {
-    'Cookie': '__cfduid=dbef031ec36c486259d45a02e6dca74cb1620283522'
+    'Cookie': '__cfduid=db46df71a56ace94ef04e8220a12d03341620285457'
   };
   var request = http.Request(
       'GET',

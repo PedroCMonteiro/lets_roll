@@ -2,6 +2,7 @@ import 'dart:math';
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:lets_roll/icons/lets_roll_icons.dart';
 import 'package:swipedetector/swipedetector.dart';
 
 import '../User.dart';
@@ -91,7 +92,7 @@ class _SubCategoriesPageState extends State<SubCategoriesPage> {
               ),
               BottomNavigationBarItem(
                 icon: Icon(
-                  Icons.tag,
+                  LetsRoll.helmet,
                 ),
                 label: 'Products',
                 tooltip: '',

@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
+import '../../icons/lets_roll_icons.dart';
 import '../Category.dart';
 import '../User.dart';
 
@@ -32,15 +33,17 @@ class _MainCategoriesPageState extends State<MainCategoriesPage> {
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
             Category(
-              icon: Icons.directions_bike,
+              icon: LetsRoll.bicycle_rider,
               height: this.height,
               name: 'Bike',
             ),
             Category(
+              icon: LetsRoll.roller_skate,
               height: this.height,
               name: 'Roller',
             ),
             Category(
+              icon: LetsRoll.skater,
               height: this.height,
               name: 'Skate',
             ),

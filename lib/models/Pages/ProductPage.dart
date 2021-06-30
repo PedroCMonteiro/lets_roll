@@ -25,7 +25,7 @@ class _ProductPageState extends State<ProductPage> {
       // then parse the JSON.
       final data = jsonDecode(response.body);
       setState(() {
-        for (Map p in data.data) products.add(Product.fromJson(p));
+        for (Map p in data['data']) products.add(Product.fromJson(p));
       });
     } else {
       // If the server did not return a 200 OK response,

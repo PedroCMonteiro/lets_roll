@@ -6,15 +6,14 @@ import 'package:flutter/rendering.dart';
 import 'package:lets_roll/icons/lets_roll_icons.dart';
 // import 'package:swipedetector/swipedetector.dart';
 
+import '../Category.dart';
 import '../User.dart';
 import 'EventPage.dart';
-// import 'GroupPage.dart';
+import 'GroupPage.dart';
 import 'PlacePage.dart';
 import 'ProductPage.dart';
 
 class SubCategoriesPage extends StatefulWidget {
-  SubCategoriesPage({Key key}) : super(key: key);
-
   @override
   _SubCategoriesPageState createState() => _SubCategoriesPageState();
 }
@@ -22,43 +21,42 @@ class SubCategoriesPage extends StatefulWidget {
 class _SubCategoriesPageState extends State<SubCategoriesPage> {
   double height = 60.0;
   int _selectedIndex = 0;
-  int _maxlength = _bottomNavigationBarOptions.length;
+  int _maxLength;
+  SubCategoriesPageArguments args;
 
-  static final List<Widget> _bottomNavigationBarOptions = <Widget>[
-    EventPage(),
-    // GroupPage(),
-    PlacePage(),
-    ProductPage(),
-  ];
+  List<Widget> _bottomNavigationBarOptions() => <Widget>[
+        EventPage(categoryId: args.mainCategory.id),
+        GroupPage(),
+        PlacePage(),
+        ProductPage(),
+      ];
 
   static final List<Color> _colorIndex = [
     Colors.brown,
-    // Colors.red,
+    Colors.red,
     Colors.orange,
     Colors.yellow
   ];
 
   void _onItemTapped(int index) {
     setState(() {
-      // print("entrou");
-      _selectedIndex = max(min(index, _maxlength - 1), 0);
+      _selectedIndex = max(min(index, this._maxLength - 1), 0);
       print(_selectedIndex);
     });
   }
 
   @override
   Widget build(BuildContext context) {
-    final SubCategoriesPageArguments args =
-        ModalRoute.of(context).settings.arguments;
-    // double initialX = 0.0;
-
+    args = ModalRoute.of(context).settings.arguments;
+    List<Widget> tabs = _bottomNavigationBarOptions();
+    _maxLength = tabs.length;
     void swipe(double vel) {
       if (vel != 0.0) _onItemTapped(_selectedIndex + (vel < 0.0 ? 1 : -1));
     }
 
     return Scaffold(
       appBar: AppBar(
-        title: Text(args.mainCategory),
+        title: Text(args.mainCategory.name),
         actions: <Widget>[
           Padding(
             padding: const EdgeInsets.only(
@@ -84,7 +82,7 @@ class _SubCategoriesPageState extends State<SubCategoriesPage> {
       body: GestureDetector(
         child: Card(
           color: _colorIndex[_selectedIndex],
-          child: _bottomNavigationBarOptions[_selectedIndex],
+          child: tabs[_selectedIndex],
         ),
         // onTapDown: (TapDownDetails details) {
         //   print('oi');
@@ -115,13 +113,13 @@ class _SubCategoriesPageState extends State<SubCategoriesPage> {
             label: 'Events',
             tooltip: '',
           ),
-          // BottomNavigationBarItem(
-          //   icon: Icon(
-          //     Icons.people,
-          //   ),
-          //   tooltip: '',
-          //   label: 'Groups',
-          // ),
+          BottomNavigationBarItem(
+            icon: Icon(
+              Icons.people,
+            ),
+            tooltip: '',
+            label: 'Groups',
+          ),
           BottomNavigationBarItem(
             icon: Icon(
               Icons.location_pin,
@@ -146,7 +144,7 @@ class _SubCategoriesPageState extends State<SubCategoriesPage> {
 
 class SubCategoriesPageArguments {
   final User user;
-  final String mainCategory;
+  final Category mainCategory;
 
   SubCategoriesPageArguments({this.user, this.mainCategory});
 }

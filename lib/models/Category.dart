@@ -8,12 +8,20 @@ import 'User.dart';
 // ignore: must_be_immutable
 class Category extends StatefulWidget {
   @required
+  final int id;
   final String name;
   final double height;
   IconData icon;
 
-  Category({this.icon, this.name, this.height}) {
+  Category({this.id, this.icon, this.name, this.height}) {
     if (this.icon == null) this.icon = Icons.tag;
+  }
+
+  factory Category.fromJson(Map<String, dynamic> json) {
+    return Category(
+      id: json['id'],
+      name: json['name'],
+    );
   }
 
   @override
@@ -50,7 +58,7 @@ class _CategoryState extends State<Category> {
         context,
         '/SubCategories',
         arguments: SubCategoriesPageArguments(
-          mainCategory: this.widget.name,
+          mainCategory: this.widget,
           user: user,
         ),
       ),

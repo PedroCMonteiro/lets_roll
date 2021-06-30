@@ -1,10 +1,10 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:lets_roll/models/Api.dart';
 import 'package:lets_roll/models/Event.dart';
 import 'package:provider/provider.dart';
 
-import '../../Provider.dart';
-import '../Api.dart';
+import '../Provider.dart';
 
 class EventsPage extends StatefulWidget {
   int categoryId;

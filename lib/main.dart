@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:lets_roll/models/Event.dart';
-import 'models/Pages/LoginPage.dart';
-import 'models/Pages/MainCategoriesPage.dart';
-import 'models/Pages/NewUserPage.dart';
-import 'models/Pages/SubCategoriesPage.dart';
-import 'models/Pages/UserPage.dart';
+import 'Pages/LoginPage.dart';
+import 'Pages/MainCategoriesPage.dart';
+import 'Pages/NewUserPage.dart';
+import 'Pages/SubCategoriesPage.dart';
+import 'Pages/UserPage.dart';
 
 Map<int, Color> color = {
   50: Color.fromRGBO(83, 158, 255, .1),

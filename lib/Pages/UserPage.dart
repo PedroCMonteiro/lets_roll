@@ -1,7 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-
-import '../User.dart';
+import 'package:lets_roll/models/User.dart';
 
 class UserPage extends StatefulWidget {
   UserPage({Key key}) : super(key: key);

@@ -1,25 +1,26 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:lets_roll/models/Category.dart';
 
-import '../Category.dart';
+// import '../Category.dart';
 
-class SkatePage extends StatefulWidget {
-  SkatePage({Key key, this.title}) : super(key: key);
+class RollerPage extends StatefulWidget {
+  RollerPage({Key key, this.title}) : super(key: key);
 
   final String title;
 
   @override
-  _SkatePageState createState() => _SkatePageState();
+  _RollerPageState createState() => _RollerPageState();
 }
 
-class _SkatePageState extends State<SkatePage> {
+class _RollerPageState extends State<RollerPage> {
   double height = 60.0;
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Skate'),
+        title: Text('Patins'),
       ),
       body: Center(
         child: Column(

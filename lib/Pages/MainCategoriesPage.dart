@@ -1,9 +1,8 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-
-import '../../icons/lets_roll_icons.dart';
-import '../Category.dart';
-import '../User.dart';
+import 'package:lets_roll/icons/lets_roll_icons.dart';
+import 'package:lets_roll/models/Category.dart';
+import 'package:lets_roll/models/User.dart';
 
 class MainCategoriesPage extends StatefulWidget {
   MainCategoriesPage({Key key, this.title}) : super(key: key);

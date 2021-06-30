@@ -1,11 +1,6 @@
-import 'dart:math';
-
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-
-import '../User.dart';
-
-// import '../Category.dart';
+import 'package:lets_roll/models/User.dart';
 
 class LoginPage extends StatefulWidget {
   LoginPage({Key key, this.title}) : super(key: key);

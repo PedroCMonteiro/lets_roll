@@ -2,10 +2,10 @@ import 'dart:math';
 
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
+import 'package:lets_roll/Pages/UserPage.dart';
 
 import 'Api.dart';
 import 'Group.dart';
-import 'Pages/UserPage.dart';
 
 // ignore: must_be_immutable
 class User extends ChangeNotifier {

@@ -4,12 +4,11 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:lets_roll/icons/lets_roll_icons.dart';
+import 'package:lets_roll/models/Category.dart';
+import 'package:lets_roll/models/User.dart';
 import 'package:provider/provider.dart';
-// import 'package:swipedetector/swipedetector.dart';
 
-import '../../Provider.dart';
-import '../Category.dart';
-import '../User.dart';
+import '../Provider.dart';
 import 'EventsPage.dart';
 import 'GroupsPage.dart';
 import 'PlacesPage.dart';

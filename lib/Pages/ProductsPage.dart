@@ -1,11 +1,7 @@
-import 'dart:convert';
-
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:http/http.dart' as http;
-
-import '../Api.dart';
-import '../Product.dart';
+import 'package:lets_roll/models/Api.dart';
+import 'package:lets_roll/models/Product.dart';
 
 // import '../Category.dart';
 

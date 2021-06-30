@@ -14,11 +14,11 @@ class ProductPage extends StatefulWidget {
 }
 
 class _ProductPageState extends State<ProductPage> {
-  List<Product> products = [];
+  List<Product> products = List.empty();
 
   Future<Null> fetchEvents(int categoryId) async {
     final response = await http.get(Uri.parse(
-        'htpps://service-lets-roll.herokuapp.com/api/events?categoryIdIn=${categoryId.toString()}'));
+        'http://service-lets-roll.herokuapp.com/api/events?categoryIdIn=${categoryId.toString()}'));
 
     if (response.statusCode == 200) {
       // If the server did return a 200 OK response,

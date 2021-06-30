@@ -25,6 +25,7 @@ class _MainCategoriesPageState extends State<MainCategoriesPage> {
         profilePhoto: 'assets/img/Mufasa.jpg',
       );
     return Scaffold(
+      backgroundColor: Colors.blue.shade700,
       appBar: AppBar(
         title: Text('Let\'s Roll'),
         centerTitle: true,

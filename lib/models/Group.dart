@@ -6,8 +6,8 @@ class Group {
 
   factory Group.fromJson(Map<String, dynamic> json) {
     Group g = Group(
-      id: json['id'],
-      name: json['name'],
+      id: json["id"],
+      name: json["name"],
     );
     print(json);
     print('${g.id} ${g.name}');

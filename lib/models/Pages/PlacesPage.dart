@@ -23,12 +23,12 @@ Future<String> fetchPost() async {
   }
 }
 
-class PlacePage extends StatelessWidget {
+class PlacesPage extends StatelessWidget {
   final Future<String> post;
   // final String title;
   final double height = 60.0;
 
-  PlacePage({Key key, this.post}) : super(key: key);
+  PlacesPage({Key key, this.post}) : super(key: key);
   @override
   Widget build(BuildContext context) {
     return Center(

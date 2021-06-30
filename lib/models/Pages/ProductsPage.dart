@@ -4,36 +4,24 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 
+import '../Api.dart';
 import '../Product.dart';
 
 // import '../Category.dart';
 
-class ProductPage extends StatefulWidget {
+class ProductsPage extends StatefulWidget {
   int categoryId;
-  ProductPage({this.categoryId});
+  ProductsPage({this.categoryId});
   @override
-  _ProductPageState createState() => _ProductPageState();
+  _ProductsPageState createState() => _ProductsPageState();
 }
 
-class _ProductPageState extends State<ProductPage> {
+class _ProductsPageState extends State<ProductsPage> {
   List<Product> products = List.empty();
 
   Future<Null> fetchProducts(int categoryId) async {
-    final response = await http.get(Uri.parse(
-        'http://service-lets-roll.herokuapp.com/api/events?categoryIdIn=${categoryId.toString()}'));
-
-    if (response.statusCode == 200) {
-      // If the server did return a 200 OK response,
-      // then parse the JSON.
-      final data = jsonDecode(response.body);
-      setState(() {
-        for (Map p in data['data']) products.add(Product.fromJson(p));
-      });
-    } else {
-      // If the server did not return a 200 OK response,
-      // then throw an exception.
-      throw Exception('Failed to load products');
-    }
+    products = await Api.getProducts();
+    // products = await Api.getProductsCategoryId(categoryId);
   }
 
   @override

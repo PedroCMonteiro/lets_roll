@@ -7,8 +7,6 @@ import 'package:http/http.dart' as http;
 import '../Group.dart';
 
 class GroupPage extends StatefulWidget {
-  int categoryId;
-  GroupPage({categoryId});
   @override
   _GroupPageState createState() => _GroupPageState();
 }
@@ -16,10 +14,8 @@ class GroupPage extends StatefulWidget {
 class _GroupPageState extends State<GroupPage> {
   List<Group> groups = [];
 
-  Future<Null> fetchEvents(int categoryId) async {
+  Future<Null> fetchGroups() async {
     try {
-      categoryId = 2;
-      print(categoryId);
       final response = await http.get(Uri.parse(
         'https://service-lets-roll.herokuapp.com/api/groups',
       ));
@@ -30,7 +26,7 @@ class _GroupPageState extends State<GroupPage> {
         final data = jsonDecode(response.body);
         print(data);
         setState(() {
-          for (Map p in data['data']) groups.add(Group.fromJson(p));
+          for (Map g in data['data']) groups.add(Group.fromJson(g));
         });
       } else {
         // If the server did not return a 200 OK response,
@@ -45,7 +41,7 @@ class _GroupPageState extends State<GroupPage> {
   @override
   void initState() {
     super.initState();
-    fetchEvents(this.widget.categoryId);
+    fetchGroups();
   }
 
   @override

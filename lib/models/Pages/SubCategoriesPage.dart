@@ -25,7 +25,7 @@ class _SubCategoriesPageState extends State<SubCategoriesPage> {
   SubCategoriesPageArguments args;
 
   List<Widget> _bottomNavigationBarOptions() => <Widget>[
-        EventPage(categoryId: args.mainCategory.id),
+        EventPage(),
         GroupPage(),
         PlacePage(),
         ProductPage(),

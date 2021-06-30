@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'models/Pages/LoginPage.dart';
 import 'models/Pages/MainCategoriesPage.dart';
+import 'models/Pages/NewUserPage.dart';
 import 'models/Pages/SubCategoriesPage.dart';
 import 'models/Pages/UserPage.dart';
 
@@ -39,6 +40,7 @@ class MyApp extends StatelessWidget {
         '/MainCategories': (context) => MainCategoriesPage(),
         '/SubCategories': (context) => SubCategoriesPage(),
         '/User': (context) => UserPage(),
+        '/NewUser': (context) => NewUserPage(),
       },
     );
   }

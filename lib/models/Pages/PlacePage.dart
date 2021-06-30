@@ -1,5 +1,4 @@
 import 'dart:async';
-import 'dart:convert';
 
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
@@ -32,30 +31,21 @@ class PlacePage extends StatelessWidget {
   PlacePage({Key key, this.post}) : super(key: key);
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Mapa',
-      theme: ThemeData(
-        primarySwatch: Colors.blue,
-      ),
-      home: Scaffold(
-        appBar: AppBar(
-          title: Text('Mapa'),
-        ),
-        body: Center(
-          child: FutureBuilder<String>(
-            future: post,
-            builder: (context, snapshot) {
-              if (snapshot.hasData) {
-                return ListTile(
-                    leading: Text(post.toString()), title: Text("Mapa"));
-              } else if (snapshot.hasError) {
-                return Text("${snapshot.error}");
-              }
+    return Center(
+      child: FutureBuilder<String>(
+        future: post,
+        builder: (context, snapshot) {
+          if (snapshot.hasData) {
+            return ListTile(
+              leading: Text(post.toString()),
+              title: Text("Mapa"),
+            );
+          } else if (snapshot.hasError) {
+            return Text("${snapshot.error}");
+          }
 
-              return CircularProgressIndicator();
-            },
-          ),
-        ),
+          return CircularProgressIndicator();
+        },
       ),
     );
   }

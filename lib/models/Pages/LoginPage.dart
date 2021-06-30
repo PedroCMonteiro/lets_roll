@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
@@ -16,12 +18,18 @@ class LoginPage extends StatefulWidget {
 
 class _LoginPageState extends State<LoginPage> {
   double height = 60.0;
+  TextEditingController _user = TextEditingController();
+  TextEditingController _password = TextEditingController();
+  bool _hidePassword = true;
+
+  void changeVisibilty() {
+    setState(() {
+      _hidePassword = !_hidePassword;
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
-    TextEditingController _user = TextEditingController();
-    TextEditingController _password = TextEditingController();
-
     return Scaffold(
       appBar: AppBar(
         title: Text('Login'),
@@ -47,36 +55,75 @@ class _LoginPageState extends State<LoginPage> {
                 decoration: InputDecoration(
                   border: OutlineInputBorder(),
                   labelText: 'Password',
+                  suffix: InkWell(
+                    child: Icon(_hidePassword
+                        ? Icons.visibility_off
+                        : Icons.visibility),
+                    onTap: changeVisibilty,
+                  ),
                 ),
                 maxLength: 100,
+                obscureText: _hidePassword,
               ),
             ),
-            ElevatedButton(
-                onPressed: () => {
-                      if (_user.text.isNotEmpty && validaSenha())
-                        {
-                          Navigator.pushNamed(
-                            context,
-                            '/MainCategories',
-                            arguments: User(
-                              username: _user.text,
-                              profilePhoto: 'assets/img/Mufasa.jpg',
-                            ),
-                          ),
-                        }
-                      else
-                        {
-                          print('Erro'),
-                        }
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Padding(
+                  padding: const EdgeInsets.all(5.0),
+                  child: ElevatedButton(
+                    onPressed: () => {fazerLogin()},
+                    child: Text('Login'),
+                  ),
+                ),
+                Padding(
+                  padding: const EdgeInsets.all(5.0),
+                  child: ElevatedButton(
+                    onPressed: () => {
+                      Navigator.pushNamed(
+                        context,
+                        '/NewUser',
+                      )
                     },
-                child: Text('Login'))
+                    child: Text('New User'),
+                  ),
+                ),
+              ],
+            ),
           ],
         ),
       ),
     );
   }
 
-  bool validaSenha() {
+  void fazerLogin() {
+    if (validaLogin()) {
+      Navigator.pushNamed(
+        context,
+        '/MainCategories',
+        arguments: User(
+          username: _user.text,
+          profilePhoto: 'assets/img/Mufasa.jpg',
+        ),
+      );
+    } else {
+      showDialog<String>(
+        context: context,
+        builder: (BuildContext context) => AlertDialog(
+          title: const Text('Erro'),
+          content: const Text('Usuário e/ou Senha incorretas'),
+          actions: <Widget>[
+            TextButton(
+              onPressed: () => Navigator.pop(context, 'OK'),
+              child: const Text('OK'),
+            ),
+          ],
+        ),
+      );
+    }
+  }
+
+  bool validaLogin() {
     return true;
   }
 }

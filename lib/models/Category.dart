@@ -26,33 +26,34 @@ class _CategoryState extends State<Category> {
     final User user = ModalRoute.of(context).settings.arguments;
 
     return GestureDetector(
-        child: Container(
-          // width: this.widget.height * 4.0,
-          height: this.widget.height,
-          child: Card(
-            // color: Theme.of(context).primarySwatch,
-            shape: RoundedRectangleBorder(
-              borderRadius: BorderRadius.circular(this.widget.height * 0.5),
+      child: Container(
+        // width: this.widget.height * 4.0,
+        height: this.widget.height,
+        child: Card(
+          // color: Theme.of(context).primarySwatch,
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(this.widget.height * 0.5),
+          ),
+          child: ListTile(
+            leading: Icon(
+              this.widget.icon,
+              color: Theme.of(context).primaryColor,
             ),
-            child: ListTile(
-              leading: Icon(
-                this.widget.icon,
-                color: Theme.of(context).primaryColor,
-              ),
-              title: Text(
-                this.widget.name,
-                // style: TextStyle(color: Theme.of(context).primaryColor),
-              ),
+            title: Text(
+              this.widget.name,
+              // style: TextStyle(color: Theme.of(context).primaryColor),
             ),
           ),
         ),
-        onTap: () => Navigator.pushNamed(
-              context,
-              '/SubCategories',
-              arguments: SubCategoriesPageArguments(
-                mainCategory: this.widget.name,
-                user: user,
-              ),
-            ));
+      ),
+      onTap: () => Navigator.pushNamed(
+        context,
+        '/SubCategories',
+        arguments: SubCategoriesPageArguments(
+          mainCategory: this.widget.name,
+          user: user,
+        ),
+      ),
+    );
   }
 }

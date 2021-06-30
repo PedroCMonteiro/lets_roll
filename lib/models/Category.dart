@@ -7,13 +7,17 @@ import 'User.dart';
 
 // ignore: must_be_immutable
 class Category extends StatefulWidget {
-  @required
   final int id;
   final String name;
   final double height;
   IconData icon;
 
-  Category({this.id, this.icon, this.name, this.height}) {
+  Category({
+    @required this.id,
+    this.icon,
+    @required this.name,
+    this.height,
+  }) {
     if (this.icon == null) this.icon = Icons.tag;
   }
 

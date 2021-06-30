@@ -1,8 +1,13 @@
+import 'package:flutter/cupertino.dart';
+
 class Group {
   int id;
   String name;
 
-  Group({id, name});
+  Group({
+    @required id,
+    @required name,
+  });
 
   factory Group.fromJson(Map<String, dynamic> json) {
     Group g = Group(

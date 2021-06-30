@@ -4,12 +4,17 @@ import 'package:lets_roll/models/Category.dart';
 
 // ignore: must_be_immutable
 class Event extends StatelessWidget {
-  int id = -1;
-  String name = "";
-  DateTime date = DateTime.now();
-  List<Category> categories = [];
+  int id;
+  String name;
+  DateTime date;
+  List<Category> categories;
 
-  Event({id, name, date, categories});
+  Event({
+    @required id,
+    @required name,
+    @required date,
+    @required categories,
+  });
 
   factory Event.fromJson(Map<String, dynamic> json) {
     List<Category> categories = [];

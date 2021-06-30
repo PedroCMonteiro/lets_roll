@@ -38,7 +38,7 @@ class Event extends StatelessWidget {
           children: <Widget>[
             ListTile(
               leading: Icon(Icons.calendar_today, size: 45),
-              title: Text(name),
+              title: Text(name ?? 'Nome do Evento'),
               subtitle: Text(
                   '${date.day.toString().padLeft(2, '0')}/${date.month.toString().padLeft(2, '0')}/${date.year.toString().padLeft(4, '0')}'),
             ),

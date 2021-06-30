@@ -36,7 +36,7 @@ class _GroupsPageState extends State<GroupsPage> {
               mainAxisSize: MainAxisSize.min,
               children: <Widget>[
                 ListTile(
-                  subtitle: Text(groups[index].name),
+                  subtitle: Text(groups[index].name ?? 'Nome Grupo'),
                   title: Text(groups[index].id.toString()),
                 ),
               ],

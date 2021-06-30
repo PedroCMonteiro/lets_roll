@@ -52,7 +52,7 @@ class _CategoryState extends State<Category> {
               color: Theme.of(context).primaryColor,
             ),
             title: Text(
-              this.widget.name,
+              this.widget.name ?? 'Nome Categoria',
               // style: TextStyle(color: Theme.of(context).primaryColor),
             ),
           ),

@@ -41,7 +41,7 @@ class _EventsPageState extends State<EventsPage> {
                 children: <Widget>[
                   ListTile(
                     leading: Icon(Icons.calendar_today, size: 45),
-                    title: Text(events[index].name),
+                    title: Text(events[index].name ?? 'Nome Evento'),
                     subtitle: Text(
                         '${events[index].date.day.toString().padLeft(2, '0')}/${events[index].date.month.toString().padLeft(2, '0')}/${events[index].date.year.toString().padLeft(4, '0')}'),
                   ),

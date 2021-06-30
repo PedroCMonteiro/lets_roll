@@ -9,6 +9,8 @@ import '../Product.dart';
 // import '../Category.dart';
 
 class ProductPage extends StatefulWidget {
+  int categoryId;
+  ProductPage({this.categoryId});
   @override
   _ProductPageState createState() => _ProductPageState();
 }
@@ -16,7 +18,7 @@ class ProductPage extends StatefulWidget {
 class _ProductPageState extends State<ProductPage> {
   List<Product> products = List.empty();
 
-  Future<Null> fetchEvents(int categoryId) async {
+  Future<Null> fetchProducts(int categoryId) async {
     final response = await http.get(Uri.parse(
         'http://service-lets-roll.herokuapp.com/api/events?categoryIdIn=${categoryId.toString()}'));
 
@@ -37,13 +39,28 @@ class _ProductPageState extends State<ProductPage> {
   @override
   void initState() {
     super.initState();
-    fetchEvents(0);
+    fetchProducts(widget.categoryId);
   }
 
   @override
   Widget build(BuildContext context) {
     return Center(
-      child: Text("oiii"),
+      child: ListView.builder(
+        itemCount: products.length,
+        itemBuilder: (context, index) {
+          return Card(
+            child: Column(
+              mainAxisSize: MainAxisSize.min,
+              children: <Widget>[
+                ListTile(
+                  title: Text(products[index].name),
+                  subtitle: Text(products[index].link),
+                ),
+              ],
+            ),
+          );
+        },
+      ),
     );
   }
 }

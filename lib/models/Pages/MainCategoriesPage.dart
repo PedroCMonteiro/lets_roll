@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import '../../icons/lets_roll_icons.dart';
 import '../Category.dart';
 import '../User.dart';
+
 class MainCategoriesPage extends StatefulWidget {
   MainCategoriesPage({Key key, this.title}) : super(key: key);
 
@@ -25,24 +26,27 @@ class _MainCategoriesPageState extends State<MainCategoriesPage> {
       );
     return Scaffold(
       appBar: AppBar(
-        title: Text( 'Let\'s Roll'),
+        title: Text('Let\'s Roll'),
         centerTitle: true,
-        ),
+      ),
       body: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
             Category(
+              id: 0,
               icon: LetsRoll.bicycle_rider,
               height: this.height,
               name: 'Bike',
             ),
             Category(
+              id: 1,
               icon: LetsRoll.roller_skate,
               height: this.height,
               name: 'Roller',
             ),
             Category(
+              id: 2,
               icon: LetsRoll.skater,
               height: this.height,
               name: 'Skate',

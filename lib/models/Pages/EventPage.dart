@@ -8,7 +8,7 @@ import 'package:http/http.dart' as http;
 
 class EventPage extends StatefulWidget {
   int categoryId;
-  EventPage({categoryId});
+  EventPage({this.categoryId});
   @override
   _EventPageState createState() => _EventPageState();
 }
@@ -17,35 +17,29 @@ class _EventPageState extends State<EventPage> {
   List<Event> events = [];
 
   Future<Null> fetchEvents(int categoryId) async {
-    try {
-      categoryId = 2;
-      print(categoryId);
-      final response = await http.get(Uri.parse(
-        'https://service-lets-roll.herokuapp.com/api/events?categoryIdIn=${categoryId.toString()}',
-      ));
+    final response = await http.get(Uri.parse(
+      'https://service-lets-roll.herokuapp.com/api/events?categoryIdIn=${categoryId.toString()}',
+    ));
 
-      if (response.statusCode == 200) {
-        // If the server did return a 200 OK response,
-        // then parse the JSON.
-        final data = jsonDecode(response.body);
-        print(response.body);
-        setState(() {
-          for (Map p in data['data']) events.add(Event.fromJson(p));
-        });
-      } else {
-        // If the server did not return a 200 OK response,
-        // then throw an exception.
-        throw Exception('Failed to load events');
-      }
-    } catch (ex) {
-      throw ex;
+    if (response.statusCode == 200) {
+      // If the server did return a 200 OK response,
+      // then parse the JSON.
+      final data = jsonDecode(response.body);
+      print(response.body);
+      setState(() {
+        for (Map e in data['data']) events.add(Event.fromJson(e));
+      });
+    } else {
+      // If the server did not return a 200 OK response,
+      // then throw an exception.
+      throw Exception('Failed to load events');
     }
   }
 
   @override
   void initState() {
     super.initState();
-    fetchEvents(this.widget.categoryId);
+    fetchEvents(widget.categoryId);
   }
 
   @override
@@ -60,8 +54,9 @@ class _EventPageState extends State<EventPage> {
               children: <Widget>[
                 ListTile(
                   leading: Icon(Icons.calendar_today, size: 45),
-                  title: Text(events[index].date.toString()),
-                  subtitle: Text(events[index].name),
+                  title: Text(events[index].name),
+                  subtitle: Text(
+                      '${events[index].date.day.toString().padLeft(2, '0')}/${events[index].date.month.toString().padLeft(2, '0')}/${events[index].date.year.toString().padLeft(4, '0')}'),
                 ),
               ],
             ),

@@ -3,6 +3,10 @@
    <application
         android:label="lets_roll"
         android:icon="@mipmap/ic_launcher">
+
+        <meta-data android:name="com.google.android.geo.API_KEY"
+                   android:value="AIzaSyA5Wpd2guRdnyC2MuBdh_rrO7q-wqpGzfI"/>
+
         <activity
             android:name=".MainActivity"
             android:launchMode="singleTop"

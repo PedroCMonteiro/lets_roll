@@ -1,11 +1,14 @@
 // import 'dart:io';
 import 'dart:async';
+import 'dart:io';
 // import 'dart:math';
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:flutter/material.dart';
+import 'package:lets_roll/models/Api.dart';
+import 'package:lets_roll/models/User.dart';
 // import '../User.dart';
 
 class NewUserPage extends StatefulWidget {
@@ -81,24 +84,21 @@ class _NewUserPageState extends State<NewUserPage> {
               ),
             ),
             Padding(
-                padding: EdgeInsets.all(5.0),
-                child: _image == null
-                    ? Center(
-                        child: GestureDetector(
-                          onTap: addPicture,
-                          child: Wrap(
-                            children: [
-                              Icon(Icons.camera_alt),
-                              Text("Nenhuma imagem selecionada"),
-                            ],
-                          ),
+              padding: EdgeInsets.all(5.0),
+              child: _image == null
+                  ? Center(
+                      child: GestureDetector(
+                        onTap: addPicture,
+                        child: Wrap(
+                          children: [
+                            Icon(Icons.camera_alt),
+                            Text("Nenhuma imagem selecionada"),
+                          ],
                         ),
-                      )
-                    : ResizeImage(
-                        Image.network(_image).image,
-                        width: 50,
-                        height: 100,
-                      )),
+                      ),
+                    )
+                  : Image.network(_image),
+            ),
           ],
         ),
       ),
@@ -123,7 +123,36 @@ class _NewUserPageState extends State<NewUserPage> {
   }
 
   void cadastrar(BuildContext context) {
+    //Salvar no banco
+    if (_user.text == '' || _email.text == '' || _password.text == '')
+      showError();
+    // Api.insertUser(User(
+    //   username: _user.text,
+    //   email: _email.text,
+    //   password: _password.text,
+    //   profilePhoto: _image,
+    // ));
     Navigator.pop(context);
+  }
+
+  void showError() {
+    String erro = '';
+    if (_user.text == '') erro += 'Usuário obrigatório\n\n';
+    if (_email.text == '') erro += 'Email obrigatório\n\n';
+    if (_password.text == '') erro += 'Senha obrigatório\n\n';
+    showDialog<String>(
+      context: context,
+      builder: (BuildContext context) => AlertDialog(
+        title: const Text('Erro'),
+        content: Text(erro),
+        actions: <Widget>[
+          TextButton(
+            onPressed: () => Navigator.pop(context, 'OK'),
+            child: const Text('OK'),
+          ),
+        ],
+      ),
+    );
   }
 
   void addPicture() {

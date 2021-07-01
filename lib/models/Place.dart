@@ -5,7 +5,11 @@ class Place {
   String name;
   List<Category> categories = [];
 
-  Place({id, name, categories});
+  Place({
+    this.id,
+    this.name,
+    this.categories,
+  });
 
   factory Place.fromJson(Map<String, dynamic> json) {
     List<Category> categories = [];

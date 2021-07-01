@@ -96,7 +96,7 @@ class _LoginPageState extends State<LoginPage> {
       Navigator.pushNamed(
         context,
         '/MainCategories',
-        arguments: User(
+        arguments: new User(
           username: _user.text,
           profilePhoto: 'assets/img/Mufasa.jpg',
         ),
@@ -119,6 +119,8 @@ class _LoginPageState extends State<LoginPage> {
   }
 
   bool validaLogin() {
+    if (_user.text == '') return false;
+    if (_password.text == '') return false;
     return true;
   }
 }

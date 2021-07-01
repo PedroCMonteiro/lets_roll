@@ -15,7 +15,7 @@ class _UserPageState extends State<UserPage> {
 
   @override
   Widget build(BuildContext context) {
-    final UserPageArguments args = ModalRoute.of(context).settings.arguments;
+    User user = ModalRoute.of(context).settings.arguments;
     const double radius = 60.0;
     return Scaffold(
       appBar: AppBar(
@@ -26,10 +26,10 @@ class _UserPageState extends State<UserPage> {
           children: [
             Padding(
               padding: const EdgeInsets.all(45.0),
-              child: (args.user.profilePhoto == null
+              child: (user.profilePhoto == null
                   ? CircleAvatar(
                       radius: radius,
-                      backgroundImage: AssetImage(args.user.profilePhoto),
+                      backgroundImage: AssetImage(user.profilePhoto),
                     )
                   : CircleAvatar(
                       radius: radius,
@@ -40,7 +40,7 @@ class _UserPageState extends State<UserPage> {
                     )),
             ),
             Text(
-              args.user.username,
+              user.username,
               style: TextStyle(fontSize: 20),
             ),
           ],
@@ -48,12 +48,4 @@ class _UserPageState extends State<UserPage> {
       ),
     );
   }
-}
-
-class UserPageArguments {
-  final User user;
-
-  UserPageArguments({
-    this.user,
-  });
 }

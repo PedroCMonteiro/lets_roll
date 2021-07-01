@@ -1,6 +1,5 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:lets_roll/models/Api.dart';
 import 'package:lets_roll/models/Event.dart';
 import 'package:provider/provider.dart';
 
@@ -15,11 +14,6 @@ class EventsPage extends StatefulWidget {
 
 class _EventsPageState extends State<EventsPage> {
   List<Event> events = [];
-
-  Future<Null> fetchEvents(int categoryId) async {
-    events = await Api.getEventsByCategoryId(categoryId);
-    print(categoryId);
-  }
 
   @override
   void initState() {
@@ -41,7 +35,7 @@ class _EventsPageState extends State<EventsPage> {
                 children: <Widget>[
                   ListTile(
                     leading: Icon(Icons.calendar_today, size: 45),
-                    title: Text(events[index].name ?? 'Nome Evento'),
+                    title: Text(events[index].name),
                     subtitle: Text(
                         '${events[index].date.day.toString().padLeft(2, '0')}/${events[index].date.month.toString().padLeft(2, '0')}/${events[index].date.year.toString().padLeft(4, '0')}'),
                   ),
@@ -52,7 +46,7 @@ class _EventsPageState extends State<EventsPage> {
               Navigator.pushNamed(
                 context,
                 '/Event',
-                arguments: EventsPageArguments(event: events[index]),
+                arguments: events[index],
               );
             },
           );

@@ -2,23 +2,25 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:lets_roll/models/Category.dart';
 
+import '../Utils.dart';
+
 // ignore: must_be_immutable
-class Event extends StatelessWidget {
+class Event {
   int id;
   String name;
   DateTime date;
   List<Category> categories;
 
   Event({
-    @required id,
-    @required name,
-    @required date,
-    @required categories,
+    this.id,
+    this.name,
+    this.date,
+    this.categories,
   });
 
   factory Event.fromJson(Map<String, dynamic> json) {
     List<Category> categories = [];
-    for (Map p in json['categories']) categories.add(Category.fromJson(p));
+    for (Map c in json['categories']) categories.add(Category.fromJson(c));
     return Event(
       id: json['id'],
       name: json['name'],
@@ -26,11 +28,19 @@ class Event extends StatelessWidget {
       categories: categories,
     );
   }
+}
 
+class EventPage extends StatefulWidget {
+  @override
+  _EventState createState() => _EventState();
+}
+
+class _EventState extends State<EventPage> {
   Widget build(BuildContext context) {
+    final Event event = ModalRoute.of(context).settings.arguments;
     return Scaffold(
       appBar: AppBar(
-        title: Text(name),
+        title: Text(event.name),
       ),
       body: Card(
         child: Column(
@@ -38,9 +48,15 @@ class Event extends StatelessWidget {
           children: <Widget>[
             ListTile(
               leading: Icon(Icons.calendar_today, size: 45),
-              title: Text(name ?? 'Nome do Evento'),
-              subtitle: Text(
-                  '${date.day.toString().padLeft(2, '0')}/${date.month.toString().padLeft(2, '0')}/${date.year.toString().padLeft(4, '0')}'),
+              title: Text(event.name),
+              subtitle: Column(
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  Text(
+                      'Data: ${Utils.dateTimeToString(event.date, 'dd/MM/yyyy')}'),
+                  Text('Hora: ${event.date.hour}:${event.date.minute}'),
+                ],
+              ),
             ),
           ],
         ),

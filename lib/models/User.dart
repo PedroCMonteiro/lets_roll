@@ -1,21 +1,22 @@
 import 'dart:math';
-
-import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
-import 'package:lets_roll/Pages/UserPage.dart';
-
-import 'Api.dart';
 import 'Group.dart';
 
 // ignore: must_be_immutable
-class User extends ChangeNotifier {
-  int id = -1;
-  String username = "";
-  String email = "";
-  String profilePhoto = "";
+class User {
+  int id;
+  String username;
+  String password;
+  String email;
+  String profilePhoto;
   List<Group> _groups = [];
 
-  User({id, username, email, profilePhoto});
+  User({
+    this.id,
+    this.username,
+    this.email,
+    this.profilePhoto,
+    this.password,
+  });
 
   factory User.fromJson(Map<String, dynamic> json) {
     return User(
@@ -38,14 +39,14 @@ class User extends ChangeNotifier {
     return _groups;
   }
 
-  Future<Null> addGroup(int groupId) async {
-    Group group = await Api.getGroupById(groupId);
-    _groups.add(group);
-    notifyListeners();
-  }
+  // Future<Null> addGroup(int groupId) async {
+  //   Group group = await Api.getGroupById(groupId);
+  //   _groups.add(group);
+  //   notifyListeners();
+  // }
 
   String shortName() {
-    if (username == '') return '';
+    if (username == null || username == '') return '';
 
     return username
         .split(' ')
@@ -53,31 +54,5 @@ class User extends ChangeNotifier {
         .join('')
         .substring(0, min(2, username.split(' ').length))
         .toUpperCase();
-  }
-
-  Widget build(BuildContext context) {
-    if (profilePhoto == null) {
-      return GestureDetector(
-        child: CircleAvatar(
-          backgroundImage: AssetImage(
-            profilePhoto,
-          ),
-        ),
-        onTap: () => {},
-      );
-    } else {
-      return GestureDetector(
-        child: CircleAvatar(
-          // backgroundColor: Colors.brown.shade800,
-          child: Center(
-            child: Text(shortName()),
-          ),
-        ),
-        onTap: () => {
-          Navigator.pushNamed(context, '/User',
-              arguments: UserPageArguments(user: this))
-        },
-      );
-    }
   }
 }

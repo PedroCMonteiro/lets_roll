@@ -1,6 +1,5 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:lets_roll/models/Api.dart';
 import 'package:lets_roll/models/Group.dart';
 import 'package:provider/provider.dart';
 
@@ -13,10 +12,6 @@ class GroupsPage extends StatefulWidget {
 
 class _GroupsPageState extends State<GroupsPage> {
   List<Group> groups = [];
-
-  Future<Null> fetchGroups() async {
-    groups = await Api.getGroups();
-  }
 
   @override
   void initState() {
@@ -31,16 +26,25 @@ class _GroupsPageState extends State<GroupsPage> {
       child: ListView.builder(
         itemCount: groups.length,
         itemBuilder: (context, index) {
-          return Card(
-            child: Column(
-              mainAxisSize: MainAxisSize.min,
-              children: <Widget>[
-                ListTile(
-                  subtitle: Text(groups[index].name ?? 'Nome Grupo'),
-                  title: Text(groups[index].id.toString()),
-                ),
-              ],
+          return GestureDetector(
+            child: Card(
+              child: Column(
+                mainAxisSize: MainAxisSize.min,
+                children: <Widget>[
+                  ListTile(
+                    subtitle: Text(groups[index].name ?? 'Nome Grupo'),
+                    title: Text(groups[index].id.toString()),
+                  ),
+                ],
+              ),
             ),
+            onTap: () {
+              Navigator.pushNamed(
+                context,
+                '/Group',
+                arguments: groups[index],
+              );
+            },
           );
         },
       ),

@@ -18,6 +18,7 @@ class _MainCategoriesPageState extends State<MainCategoriesPage> {
   @override
   Widget build(BuildContext context) {
     User user = ModalRoute.of(context).settings.arguments;
+
     if (user == null)
       user = User(
         username: 'pedro castro monteiro',
@@ -38,18 +39,21 @@ class _MainCategoriesPageState extends State<MainCategoriesPage> {
               icon: LetsRoll.bicycle_rider,
               height: this.height,
               name: 'Bike',
+              user: user,
             ),
             Category(
               id: 1,
               icon: LetsRoll.roller_skate,
               height: this.height,
               name: 'Roller',
+              user: user,
             ),
             Category(
               id: 2,
               icon: LetsRoll.skater,
               height: this.height,
               name: 'Skate',
+              user: user,
             ),
           ],
         ),

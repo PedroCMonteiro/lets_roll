@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
+
 import 'package:lets_roll/models/Event.dart';
+import 'package:lets_roll/models/Group.dart';
+import 'package:lets_roll/models/Product.dart';
 import 'Pages/LoginPage.dart';
 import 'Pages/MainCategoriesPage.dart';
 import 'Pages/NewUserPage.dart';
@@ -42,7 +45,10 @@ class MyApp extends StatelessWidget {
         '/SubCategories': (context) => SubCategoriesPage(),
         '/User': (context) => UserPage(),
         '/NewUser': (context) => NewUserPage(),
-        '/Event': (context) => Event(),
+        '/Event': (context) => EventPage(),
+        '/Group': (context) => GroupPage(),
+        '/Product': (context) => ProductPage(),
+        // '/Place': (context) => PlacePage(),
       },
     );
   }

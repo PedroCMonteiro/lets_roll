@@ -11,12 +11,14 @@ class Category extends StatefulWidget {
   final String name;
   final double height;
   IconData icon;
+  User user;
 
   Category({
-    @required this.id,
+    this.id,
     this.icon,
-    @required this.name,
+    this.name,
     this.height,
+    this.user,
   }) {
     if (this.icon == null) this.icon = Icons.tag;
   }
@@ -35,7 +37,7 @@ class Category extends StatefulWidget {
 class _CategoryState extends State<Category> {
   @override
   Widget build(BuildContext context) {
-    final User user = ModalRoute.of(context).settings.arguments;
+    // final User user = ModalRoute.of(context).settings.arguments;
 
     return GestureDetector(
       child: Container(
@@ -63,7 +65,7 @@ class _CategoryState extends State<Category> {
         '/SubCategories',
         arguments: SubCategoriesPageArguments(
           mainCategory: this.widget,
-          user: user,
+          user: this.widget.user,
         ),
       ),
     );

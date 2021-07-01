@@ -35,8 +35,8 @@ class _SubCategoriesPageState extends State<SubCategoriesPage> {
   static final List<Color> _colorIndex = [
     Colors.blue.shade500,
     Colors.blue.shade300,
+    Colors.blue.shade100,
     Colors.blue.shade300,
-    Colors.blue.shade500,
   ];
 
   void _onItemTapped(int index) {
@@ -49,8 +49,10 @@ class _SubCategoriesPageState extends State<SubCategoriesPage> {
   @override
   Widget build(BuildContext context) {
     args = ModalRoute.of(context).settings.arguments;
+    // print('___________________' + args.user.username);
     List<Widget> tabs = _bottomNavigationBarOptions();
     _maxLength = tabs.length;
+
     void swipe(double vel) {
       if (vel != 0.0) _onItemTapped(_selectedIndex + (vel < 0.0 ? 1 : -1));
     }
@@ -65,7 +67,27 @@ class _SubCategoriesPageState extends State<SubCategoriesPage> {
             Padding(
               padding: const EdgeInsets.only(
                   left: 30.0, top: 8.0, bottom: 8.0, right: 8.0),
-              child: args.user.build(context),
+              child: GestureDetector(
+                child: ((args.user.profilePhoto == null)
+                    ? CircleAvatar(
+                        backgroundImage: AssetImage(
+                          args.user.profilePhoto,
+                        ),
+                      )
+                    : CircleAvatar(
+                        // backgroundColor: Colors.brown.shade800,
+                        child: Center(
+                          child: Text(args.user.shortName()),
+                        ),
+                      )),
+                onTap: () => {
+                  Navigator.pushNamed(
+                    context,
+                    '/User',
+                    arguments: args.user,
+                  )
+                },
+              ),
             ),
           ],
         ),
